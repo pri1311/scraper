@@ -45,6 +45,12 @@ This project demonstrates how to create an endpoint that extracts and cleans tex
    - Lowercasing:
       For consistency and to treat words regardless of their capitalization, you might choose to convert all text to lowercase.
 
+## Examples
+
+![](https://github.com/pri1311/scraper/blob/master/examples/main_content.png)
+![](https://github.com/pri1311/scraper/blob/master/examples/tables.png)
+![](https://github.com/pri1311/scraper/blob/master/examples/special_chars.png)
+
 ## Repository Structure
 ```
    scraper/

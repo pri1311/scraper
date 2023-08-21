@@ -1,12 +1,14 @@
+import re
+
+import requests
+import pandas as pd
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
 from tabulate import tabulate
-import re
+from bs4 import BeautifulSoup
+
+from . import utils
 
 
 @api_view(["GET"])
@@ -14,20 +16,6 @@ def getAbout(_):
     return Response({
         "name": "Navigate to /etxract endpoint to start Scraping!"
     })
-
-
-def getTable(table):
-    rows = []
-    trs = table.find_all("tr")
-    headerow = [td.get_text(strip=True)
-                for td in trs[0].find_all("th")]  # header row
-    if headerow:  # if there is a header row include first
-        rows.append(headerow)
-        trs = trs[1:]
-    for tr in trs:  # for every table row
-        rows.append([td.get_text(strip=True)
-                    for td in tr.find_all("td")])  # data row
-    return rows
 
 
 @api_view(["GET", "POST"])
@@ -54,6 +42,7 @@ def extract(request):
 
     if "fileName" in request.data and (request.data["fileName"]).strip() != "":
         FILENAME = request.data["fileName"]
+    
     if "remove_special_characters" in request.data:
         if not isinstance(request.data["remove_special_characters"], bool):
             return Response(
@@ -104,7 +93,7 @@ def extract(request):
     tables = soup.find_all("table")
     generated_tables = []
     for table in tables:
-        generated_tables.append(getTable(table))
+        generated_tables.append(utils.getTable(table))
 
     # Remove the tables since we extract them separately
     for table in tables:
