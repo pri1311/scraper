@@ -22,9 +22,9 @@ This project demonstrates how to create an endpoint that extracts and cleans tex
    Example: `{"fileName": "fileName.txt"}`\
    **PLEASE NOTE**: If there exists a file with the same name, it will be overwritten.
 2. To remove special characters from the text set `remove_special_characters` to `true` in the payload. It should be a Boolean. Default is false.\
-   Example: `{"remove_special_characters": true}`\
+   Example: `{"remove_special_characters": true}`
 3. To convert all text to lowercase, set `to_lowercase` to `true` in the payload. It should be a Boolean. Default is false.\
-   Example: `{"to_lowercase": true}`\
+   Example: `{"to_lowercase": true}`
 
 ## Testing
 
@@ -44,3 +44,23 @@ This project demonstrates how to create an endpoint that extracts and cleans tex
       Some special characters might still be present in the text after removing HTML tags. Depending on your requirements, you might want to handle or remove special characters, punctuation, and non-alphanumeric characters. We use use regular expressions to filter out non-alphanumeric characters or specific patterns in this demo. 
    - Lowercasing:
       For consistency and to treat words regardless of their capitalization, you might choose to convert all text to lowercase.
+
+## Repository Structure
+```
+   scraper/
+   ├── manage.py
+   ├── main/
+   │   ├── __init__.py
+   │   ├── asgi.py
+   │   ├── settings.py
+   │   ├── urls.py
+   │   └── wsgi.py
+   ├── scraper/
+   │   ├── __init__.py
+   │   ├── tests.py
+   │   ├── urls.py
+   │   └── views.py
+   ├── .gitignore
+   ├── readme.md
+   └── requirements.txt
+```
